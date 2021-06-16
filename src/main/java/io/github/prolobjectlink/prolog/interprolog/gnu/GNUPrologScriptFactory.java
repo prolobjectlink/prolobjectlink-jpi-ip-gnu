@@ -2,7 +2,7 @@
  * #%L
  * prolobjectlink-jpi-ip-xsb
  * %%
- * Copyright (C) 2012 - 2020 Prolobjectlink Project
+ * Copyright (C) 2012 - 2019 Prolobjectlink Project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,16 +17,21 @@
  * limitations under the License.
  * #L%
  */
-package io.github.prolobjectlink.prolog.interprolog.xsb;
+package io.github.prolobjectlink.prolog.interprolog.gnu;
 
-import io.github.prolobjectlink.prolog.AbstractJavaConverter;
-import io.github.prolobjectlink.prolog.PrologJavaConverter;
-import io.github.prolobjectlink.prolog.PrologProvider;
+import javax.script.ScriptEngineFactory;
 
-public class XsbPrologJavaConverter extends AbstractJavaConverter implements PrologJavaConverter {
+import io.github.prolobjectlink.prolog.PrologEngine;
+import io.github.prolobjectlink.prolog.interprolog.InterPrologScriptFactory;
 
-	public XsbPrologJavaConverter(PrologProvider provider) {
-		super(provider);
+public final class GNUPrologScriptFactory extends InterPrologScriptFactory implements ScriptEngineFactory {
+
+	public GNUPrologScriptFactory() {
+		super(new GNUProlog().newEngine());
+	}
+
+	public GNUPrologScriptFactory(PrologEngine engine) {
+		super(engine);
 	}
 
 }

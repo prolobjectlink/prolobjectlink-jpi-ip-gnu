@@ -26,11 +26,11 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import io.github.prolobjectlink.prolog.interprolog.xsb.XsbPrologConsole;
+import io.github.prolobjectlink.prolog.interprolog.gnu.GNUPrologConsole;
 
 public class PrologConsoleTest extends PrologBaseTest {
 
-	private XsbPrologConsole console = new XsbPrologConsole();
+	private GNUPrologConsole console = new GNUPrologConsole();
 
 	@Test
 	public final void testGetArguments() {

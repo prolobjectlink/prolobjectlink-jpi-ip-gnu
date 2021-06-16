@@ -1,8 +1,8 @@
-/*-
+/*
  * #%L
  * prolobjectlink-jpi-ip-xsb
  * %%
- * Copyright (C) 2012 - 2019 Prolobjectlink Project
+ * Copyright (C) 2012 - 2018 WorkLogic Project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,21 +17,24 @@
  * limitations under the License.
  * #L%
  */
-package io.github.prolobjectlink.prolog.interprolog.xsb;
+package io.github.prolobjectlink.prolog.interprolog.gnu;
 
-import javax.script.ScriptEngineFactory;
+import io.github.prolobjectlink.prolog.AbstractConsole;
+import io.github.prolobjectlink.prolog.PrologConsole;
 
-import io.github.prolobjectlink.prolog.PrologEngine;
-import io.github.prolobjectlink.prolog.interprolog.InterPrologScriptFactory;
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
+public class GNUPrologConsole extends AbstractConsole implements PrologConsole {
 
-public final class XsbPrologScriptFactory extends InterPrologScriptFactory implements ScriptEngineFactory {
-
-	public XsbPrologScriptFactory() {
-		super(new XsbProlog().newEngine());
+	public GNUPrologConsole() {
+		super(new GNUProlog());
 	}
 
-	public XsbPrologScriptFactory(PrologEngine engine) {
-		super(engine);
+	public static void main(String[] args) {
+		new GNUPrologConsole().run(args);
 	}
 
 }

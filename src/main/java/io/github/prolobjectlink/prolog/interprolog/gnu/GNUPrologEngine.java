@@ -17,30 +17,45 @@
  * limitations under the License.
  * #L%
  */
-package io.github.prolobjectlink.prolog.interprolog.xsb;
+package io.github.prolobjectlink.prolog.interprolog.gnu;
 
-import com.declarativa.interprolog.TermModel;
+import java.util.List;
 
-import io.github.prolobjectlink.prolog.PrologConverter;
+import io.github.prolobjectlink.prolog.Licenses;
+import io.github.prolobjectlink.prolog.PrologEngine;
 import io.github.prolobjectlink.prolog.PrologProvider;
-import io.github.prolobjectlink.prolog.interprolog.InterPrologConverter;
+import io.github.prolobjectlink.prolog.interprolog.InterPrologEngine;
 
 /**
  * 
  * @author Jose Zalacain
  * @since 1.0
  */
-public class XsbPrologConverter extends InterPrologConverter implements PrologConverter<TermModel> {
+public class GNUPrologEngine extends InterPrologEngine implements PrologEngine {
 
-	public PrologProvider createProvider() {
-		return new XsbProlog(this);
+	protected GNUPrologEngine(PrologProvider provider) {
+		super(provider);
 	}
 
-	@Override
-	public String toString() {
-		return "XsbPrologConverter";
+	public final String getLicense() {
+		return Licenses.LGPL_V3;
 	}
-	
-	
+
+	public final String getVersion() {
+		return engine.getPrologNumericVersion();
+	}
+
+	public final String getVendor() {
+		return "XSB Prolog";
+	}
+
+	public final String getName() {
+		return "XSB Prolog";
+	}
+
+	public final List<String> verify() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
