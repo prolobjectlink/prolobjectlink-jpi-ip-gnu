@@ -42,40 +42,45 @@ public class GNUProlog extends InterPrologProvider implements PrologProvider {
 
 	static {
 		try {
-			String arch = System.getProperty("os.arch");
-			String os = System.getProperty("os.name");
-			String xsbdir = System.getenv("XSB_DIRECTORY");
-			if (xsbdir == null) {
-				throw new UnsatisfiedLinkError("Don't forget define XSB_DIRECTORY enviroment variable");
-			}
-			StringBuilder builder = new StringBuilder();
-			builder.append(xsbdir + "/config/");
-			if (os.startsWith("Windows")) {
-				if (arch.contains("64")) {
-					builder.append("x64");
-				} else if (arch.contains("86")) {
-					builder.append("x86");
-				}
-				builder.append("-pc-");
-				builder.append("windows");
-			} else if (os.equals("Linux")) {
-				if (arch.contains("64")) {
-					builder.append("x86_64");
-				} else if (arch.contains("86")) {
-					builder.append("x86");
-				}
-				// docker don't identify like -pc-
-				builder.append("-unknown-");
-				builder.append("linux");
-				builder.append("-gnu");
-			}
-			builder.append("/bin");
-			String xsbPath = "" + builder + "";
-			xsbPath = xsbPath.replace('/', File.separatorChar);
-			xsbPath = xsbPath.replace('\\', File.separatorChar);
-			Logger.getLogger(GNUProlog.class.getName()).log(Level.INFO, xsbPath);
+			// String arch = System.getProperty("os.arch");
+			// String os = System.getProperty("os.name");
+			// String xsbdir = System.getenv("XSB_DIRECTORY");
+			// if (xsbdir == null) {
+			// throw new UnsatisfiedLinkError("Don't forget define XSB_DIRECTORY enviroment
+			// variable");
+			// }
+			// StringBuilder builder = new StringBuilder();
+			// builder.append(xsbdir + "/config/");
+			// if (os.startsWith("Windows")) {
+			// if (arch.contains("64")) {
+			// builder.append("x64");
+			// } else if (arch.contains("86")) {
+			// builder.append("x86");
+			// }
+			// builder.append("-pc-");
+			// builder.append("windows");
+			// } else if (os.equals("Linux")) {
+			// if (arch.contains("64")) {
+			// builder.append("x86_64");
+			// } else if (arch.contains("86")) {
+			// builder.append("x86");
+			// }
+			// // docker don't identify like -pc-
+			// builder.append("-unknown-");
+			// builder.append("linux");
+			// builder.append("-gnu");
+			// }
+			// builder.append("/bin");
+			// String xsbPath = "" + builder + "";
+
+			String gnuPath = "C:\\GNU-Prolog\\bin";
+			gnuPath = gnuPath.replace('/', File.separatorChar);
+			gnuPath = gnuPath.replace('\\', File.separatorChar);
+			Logger.getLogger(GNUProlog.class.getName()).log(Level.INFO, gnuPath);
 			// InterPrologEngine.engine = new NativeEngine(xsbPath);
-			InterPrologEngine.engine = new GNUSubprocessEngine();
+//			InterPrologEngine.engine = new GNUSubprocessEngine();
+//			InterPrologEngine.engine = new GNUSubprocessEngine(gnuPath, true);
+			InterPrologEngine.engine = new GNUSubprocessEngine(new String[] { gnuPath },true,true, true);
 		} catch (UnsatisfiedLinkError e) {
 			Logger.getLogger(GNUProlog.class.getName()).log(Level.SEVERE, null, e);
 		}
